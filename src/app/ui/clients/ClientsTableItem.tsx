@@ -6,24 +6,31 @@ import {
 import Link from "next/link";
 import logovoid from "@/app/assets/images/logo-black.png";
 import Swal from "sweetalert2";
-//import { DeleteClient } from "@/app/lib/actions";
+import { DeleteClient } from "@/app/lib/actions";
+import moment from "moment";
 
 export default function ClientTableItem({
   id,
   numlist,
   logo,
   name,
-  contact_name,
+  contact_email,
+  contact_phone,
+  contact_city,
   enable,
-  location
+  location,
+  association_date
 }:{
   id:string,
   numlist:number,
   logo:string,
   name:string,
-  contact_name:string,
+  contact_email:string,
+  contact_phone:string,
+  contact_city:string,
   enable:boolean,
-  location:string
+  location:string,
+  association_date:string
 }) {
 
   const deleteRecord = async (id:string) => {
@@ -38,7 +45,7 @@ export default function ClientTableItem({
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        //DeleteClient(id)
+        DeleteClient(id)
         Swal.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
@@ -70,7 +77,21 @@ export default function ClientTableItem({
         </div>
       </th>
       <td className="px-6 py-4">
-        {contact_name}
+        {contact_email} <br /> {contact_phone}
+      </td>
+      <th>
+        {
+          association_date?
+          moment(association_date).format("LL")
+          :"N/A"
+        }
+      </th>
+      <td>
+        {
+          contact_city?
+          contact_city
+          :"N/A"
+        }
       </td>
       <td className="px-6 py-4">
         <div className="flex items-center">

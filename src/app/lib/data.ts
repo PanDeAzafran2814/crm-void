@@ -30,7 +30,7 @@ export async function FetchClientsFiltered(
     const supabase = createClient();
     const LimitPerPage = location === "clients" ? ITEMS_PER_PAGE : 5;
     const offset = (currentPage - 1) * LimitPerPage;
-    const filters = query.split(' ').map(q => `name.ilike.%${q}%,contact_name.ilike.%${q}%`).join(',');
+    const filters = query.split(' ').map(q => `name.ilike.%${q}%`).join(',');
     try {
         const clients = await supabase
             .from('clients')
@@ -38,7 +38,9 @@ export async function FetchClientsFiltered(
             id,
             name, 
             client_logo,
-            contact_name,
+            contact_email,
+            contact_phone,
+            contact_city,
             enable,
             association_date
             `)
@@ -60,7 +62,7 @@ export async function CountClientsFiltered(
     query: string,
 ) {
     const supabase = createClient();
-    const filters = query.split(' ').map(q => `name.ilike.%${q}%,contact_name.ilike.%${q}%`).join(',');
+    const filters = query.split(' ').map(q => `name.ilike.%${q}%`).join(',');
 
     try {
         const { count, error } = await supabase

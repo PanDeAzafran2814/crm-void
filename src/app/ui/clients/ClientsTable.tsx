@@ -24,6 +24,10 @@ export default async function ClientsTable({
             <th scope="col" className="px-6 py-3">
               Informacion Contacto
             </th>
+            <th>Fecha De Associacion</th>
+            <th>
+              Ciudad
+            </th>
             <th scope="col" className="px-6 py-3">
               Estado
             </th>
@@ -42,9 +46,12 @@ export default async function ClientsTable({
                   numlist={key} 
                   logo={item.client_logo} 
                   name={item.name} 
-                  contact_name={item.contact_name} 
+                  contact_email={item.contact_email}
+                  contact_phone={item.contact_phone}
+                  contact_city={item.contact_city}
                   enable={item.enable}
                   location={location}
+                  association_date={item.association_date}
                 />
               )
             })
