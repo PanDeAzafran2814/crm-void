@@ -1,5 +1,5 @@
 'use client'
-import { BuildingOffice2Icon, UserCircleIcon } from "@heroicons/react/16/solid";
+import { BuildingOffice2Icon, UserCircleIcon } from "@heroicons/react/24/outline";
 import { ChangeEvent, useState } from "react";
 import logovoid from "@/app/assets/images/logo.png";
 import { SubmitButton } from "../submit-button";

@@ -5,7 +5,7 @@ import { useFormState } from "react-dom"
 import logovoid from "@/app/assets/images/logo.png";
 import { ChangeEvent, useState } from "react"
 import { SubmitButton } from "../submit-button"
-import { BuildingOffice2Icon, UserCircleIcon } from "@heroicons/react/16/solid";
+import { BuildingOffice2Icon, UserCircleIcon } from "@heroicons/react/24/outline";
 
 export default function EditClientForm({
     clientData

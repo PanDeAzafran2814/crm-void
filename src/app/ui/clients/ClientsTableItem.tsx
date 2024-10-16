@@ -1,7 +1,8 @@
 'use client'
 import {
   PencilSquareIcon,
-  TrashIcon
+  TrashIcon,
+  EyeIcon
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import logovoid from "@/app/assets/images/logo-black.png";
@@ -106,6 +107,9 @@ export default function ClientTableItem({
       </td>
       <td className="px-6 py-4">
         <div className="flex space-x-3">
+        <Link href={`/dashboard/clients/${id}/view`}>
+          <EyeIcon className="w-8 h-8 bg-blue-900 text-white rounded-full p-2 transition-all duration-700 hover:bg-green-900 cursor-pointer"/>
+        </Link>
         <Link href={`/dashboard/clients/${id}/edit`}>
           <PencilSquareIcon className="w-8 h-8 bg-green-600 text-white rounded-full p-2 transition-all duration-700 hover:bg-green-900 cursor-pointer"/>
         </Link>
