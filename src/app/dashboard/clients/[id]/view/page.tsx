@@ -1,6 +1,6 @@
 //import EditClientForm from "@/app/ui/clients/edit-form";
 import { fetchClientByID } from "@/app/lib/actions";
-import EditClientForm from "@/app/ui/clients/edit-form";
+import ViewClient from "@/app/ui/clients/ViewClient";
 import { notFound } from "next/navigation";
 
 export default async function Page({params}: { params: { id: string} }){
@@ -14,7 +14,7 @@ export default async function Page({params}: { params: { id: string} }){
     
 return(
     <div className="p-6 space-y-8 overflow-y-auto h-full w-full">
-        <EditClientForm clientData={client.data[0]}/>
+        <ViewClient clientData={client.data[0]}/>
     </div>
     );
 }

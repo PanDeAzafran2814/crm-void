@@ -167,12 +167,14 @@ export async function createClients(prevState: State, formData: FormData): Promi
 
 export async function updateClient(id: string, client_logo_old: string, prevState: State, fromData: FormData): Promise<State> {
     const validateFields = CreateClientSchema.safeParse({
-        name: fromData.get('name') || "", // Proporcionando un valor predeterminado para evitar null
-        contact_name: fromData.get('contact_name') || "", // Proporcionando un valor predeterminado para evitar null
-        contact_phone: fromData.get('contact_phone') || "", // Valor predeterminado para manejar null
-        contact_email: fromData.get('contact_email') || "", // Valor predeterminado para manejar null
+        name: fromData.get('name') || "",
+        contact_email: fromData.get('contact_email') || "",
+        contact_phone: fromData.get('contact_phone') || "",
+        contact_address: fromData.get('contact_address') || "",
+        contact_city: fromData.get('contact_city') || "",
+        contact_state: fromData.get('contact_state') || "",
+        contact_zip: fromData.get('contact_zip') || "",
         //logo: fromData.get('client_logo') || "",
-        notes: fromData.getAll('notes'),
         association_date: fromData.get("association_date"),
     });
 
@@ -184,7 +186,32 @@ export async function updateClient(id: string, client_logo_old: string, prevStat
         };
     }
 
-    const { name, contact_email, contact_phone, notes, association_date } = validateFields.data;
+    // Reconstruir el array de notas
+    const notes = [];
+    let noteIndex = 0;
+    while (fromData.get(`notes[${noteIndex}][nota]`)) {
+        notes.push({
+            nota: fromData.get(`notes[${noteIndex}][nota]`) as string,
+            fecha: fromData.get(`notes[${noteIndex}][fecha]`) as string,
+        });
+        noteIndex++;
+    }
+
+    // Reconstruir el array de contactos
+    const contacts = [];
+    let contactIndex = 0;
+    while (fromData.get(`contacts[${contactIndex}][nombre]`)) {
+        contacts.push({
+            nombre: fromData.get(`contacts[${contactIndex}][nombre]`) as string,
+            email: fromData.get(`contacts[${contactIndex}][email]`) as string,
+            position: fromData.get(`contacts[${contactIndex}][position]`) as string,
+            celular: fromData.get(`contacts[${contactIndex}][celular]`) as string,
+            telefono: fromData.get(`contacts[${contactIndex}][telefono]`) as string,
+        });
+        contactIndex++;
+    }
+
+    const { name, contact_email, contact_phone, contact_address, contact_city, contact_state, contact_zip, association_date } = validateFields.data;
     const supabase = createClient();
 
     const logo = fromData.get("client_logo") as File;
@@ -222,6 +249,11 @@ export async function updateClient(id: string, client_logo_old: string, prevStat
                 name: name,
                 contact_phone: contact_phone,
                 contact_email: contact_email,
+                contact_address: contact_address,
+                contact_city: contact_city,
+                contact_state: contact_state,
+                contact_zip: contact_zip,
+                contacts: contacts,
                 notes: notes,
                 client_logo: PublicURL.data.publicUrl,
                 association_date: association_date ? new Date(association_date) : null,
@@ -241,6 +273,11 @@ export async function updateClient(id: string, client_logo_old: string, prevStat
             name: name,
             contact_phone: contact_phone,
             contact_email: contact_email,
+            contact_address: contact_address,
+            contact_city: contact_city,
+            contact_state: contact_state,
+            contact_zip: contact_zip,
+            contacts: contacts,
             notes: notes,
             association_date: association_date ? new Date(association_date) : null,
             enable: status
