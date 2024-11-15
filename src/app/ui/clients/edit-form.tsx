@@ -13,7 +13,6 @@ export default function EditClientForm({
     clientData: Tables<'clients'>
 }){
 
-    console.log(clientData.enable)
     const [Tab, SetTab] = useState("company");
     const initialState = { message: null, status: "none", errors: {} }
     const updateInvoiceWithId = updateClient.bind(null, clientData.id, clientData.client_logo || "")
@@ -115,7 +114,7 @@ export default function EditClientForm({
             <li>
                 <a onClick={()=>{SetTab("company")}} className={`inline-flex items-center px-4 py-3 rounded-lg w-full cursor-pointer ${Tab === "company"? "text-white bg-PrimaryBg" : "text-PrimaryBg border-PrimaryBg border"}`}>
                     <BuildingOffice2Icon className="w-4 h-4 me-2 "/>
-                    Informacion De Empresa
+                    Informacion
                 </a>
             </li>
             <li>

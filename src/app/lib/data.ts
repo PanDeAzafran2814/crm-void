@@ -111,6 +111,14 @@ export async function CountDashboardClientCard() {
         const percentEnabled = totalCount > 0 ? parseFloat((enabledCount / totalCount * 100).toFixed(2)) : 0;
         const percentDisabled = totalCount > 0 ? parseFloat((disabledCount / totalCount * 100).toFixed(2)) : 0;
 
+        console.log({
+            totalcount: totalCount,
+            totalEnabled: enabledCount,
+            totalDisabled: disabledCount,
+            percentEnabled,
+            percentDisabled
+        })
+
         return {
             totalcount: totalCount,
             totalEnabled: enabledCount,

@@ -9,37 +9,80 @@ import { usePathname } from "next/navigation";
 import Search from "./search";
 
 export default function TopBar() {
-  /*const links = [
-    { name: "Dashboard", href: "/dashboard" },
-    { name: "Clientes", href: "/dashboard/clients" },
-    { name: "Servicios", href: "/dashboard/services" },
-    {
-      name: "Facturas",
-      href: "/dashboard/invoices",
-    },
-    { name: "Gastos", href: "/dashboard/bills" },
-    { name: "Status", href: "/dashboard/status" },
-    {
-      name: "Credenciales",
-      href: "/dashboard/credentials",
-    },
-  ];
-  */
 
-  const TITTLES: { [key: string]: string } = {
+  type TitleConfig = string | {
+    default: string;
+    create?: string;
+    edit?: string;
+    view?: string;
+    [key: string]: string | undefined; // Para admitir otras posibles acciones dinámicas
+  };  
+
+  const TITTLES: { [key: string]: TitleConfig  } = {
     "/dashboard": "Dashboard",
-    "/dashboard/clients": "Clientes",
-    "/dashboard/clients/create": "Cliente Nuevo",
-    "/dashboard/services": "Servicios",
+    "/dashboard/clients": {
+      default: "Clientes",
+      create: "Cliente Nuevo",
+      edit: "Editar Cliente",
+      view: "Ver Cliente",
+    },
+    "/dashboard/services": {
+      default: "Servicios",
+      create: "Servicio Nueva",
+      edit: "Editar Servicio",
+      view: "Ver Servicio",
+    },
+    "/dashboard/suscription": {
+      default: "Suscripciones",
+      create: "Suscripcion Nueva",
+      edit: "Editar Suscripcion",
+      view: "Ver Suscripcion",
+      renewal: "Renovar Suscripcion",
+    },
     "/dashboard/invoices": "Facturas",
     "/dashboard/bills": "Gastos",
     "/dashboard/status": "Status",
     "/dashboard/credentials": "Credenciales",
   };
 
+  const getTitle = (pathname: string): string => {
+    // Dividimos el pathname en partes
+    const pathParts = pathname.split("/").filter(Boolean); // Filtra partes vacías
+    const [rootPath, section, idOrAction, action] = pathParts;
+
+    // Construimos la ruta base (ejemplo: "/dashboard/clients")
+    const basePath = `/${rootPath}/${section}`;
+    // Buscamos el título basado en la ruta base
+    const sectionConfig = TITTLES[basePath];
+
+    // Si es una cadena, es un título directo (sin subrutas)
+    if (typeof sectionConfig === "string") {
+      return sectionConfig;
+    }
+
+    // Si tiene subrutas, verificamos si la tercera parte es un ID o una acción
+    if (sectionConfig) {
+      // Si hay una acción explícita como "edit" o "view"
+      if (action && sectionConfig[action]) {
+        return sectionConfig[action];
+      }
+
+      // Si la tercera parte es "create", consideramos que es una subruta válida
+      if (idOrAction && sectionConfig[idOrAction]) {
+        return sectionConfig[idOrAction];
+      }
+
+      // Si no hay acción explícita, usamos el título por defecto
+      return sectionConfig.default || "Pagina";
+    }
+
+    // Si no hay coincidencia, devolvemos un valor por defecto
+    return "Pagina";
+  };
+
   const [OpenUserMenu, SetOpenUserMenu] = useState(false);
   const pathname = usePathname();
-  const Title = TITTLES[pathname] || "Pagina";
+  const Title = getTitle(pathname);
   return (
     <div className="flex py-5 px-5 border-b border-gray-300 relative z-[999]">
       <div className="w-[20%]">

@@ -26,7 +26,7 @@ export default function ViewClient({
             <li>
                 <a onClick={()=>{SetTab("company")}} className={`inline-flex items-center px-4 py-3 rounded-lg w-full cursor-pointer ${Tab === "company"? "text-white bg-PrimaryBg" : "text-PrimaryBg border-PrimaryBg border"}`}>
                     <BuildingOffice2Icon className="w-4 h-4 me-2 "/>
-                    Informacion De Empresa
+                    Informacion
                 </a>
             </li>
             <li>
