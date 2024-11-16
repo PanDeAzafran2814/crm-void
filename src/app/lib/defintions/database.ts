@@ -66,6 +66,60 @@ export type Database = {
         }
         Relationships: []
       }
+      leads: {
+        Row: {
+          company_name: string
+          contact_email: string | null
+          contact_name: string | null
+          contact_phone: string | null
+          contact_position: string | null
+          created_at: string
+          date_of_first_contact: string | null
+          date_of_last_interaction: string | null
+          id: string
+          last_action: string | null
+          last_update: string | null
+          notes: Json | null
+          reason_to_close: string | null
+          source: string | null
+          status: string | null
+        }
+        Insert: {
+          company_name: string
+          contact_email?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          contact_position?: string | null
+          created_at?: string
+          date_of_first_contact?: string | null
+          date_of_last_interaction?: string | null
+          id?: string
+          last_action?: string | null
+          last_update?: string | null
+          notes?: Json | null
+          reason_to_close?: string | null
+          source?: string | null
+          status?: string | null
+        }
+        Update: {
+          company_name?: string
+          contact_email?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          contact_position?: string | null
+          created_at?: string
+          date_of_first_contact?: string | null
+          date_of_last_interaction?: string | null
+          id?: string
+          last_action?: string | null
+          last_update?: string | null
+          notes?: Json | null
+          reason_to_close?: string | null
+          source?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
       suscriptions: {
         Row: {
           amount: number | null
@@ -84,6 +138,8 @@ export type Database = {
           last_update: string | null
           notes: Json | null
           renewal_date: string | null
+          renewed_from: string | null
+          renewed_from_date: string | null
           service: string
           subtotal: number | null
           tax: number | null
@@ -107,6 +163,8 @@ export type Database = {
           last_update?: string | null
           notes?: Json | null
           renewal_date?: string | null
+          renewed_from?: string | null
+          renewed_from_date?: string | null
           service: string
           subtotal?: number | null
           tax?: number | null
@@ -130,6 +188,8 @@ export type Database = {
           last_update?: string | null
           notes?: Json | null
           renewal_date?: string | null
+          renewed_from?: string | null
+          renewed_from_date?: string | null
           service?: string
           subtotal?: number | null
           tax?: number | null
@@ -142,6 +202,13 @@ export type Database = {
             columns: ["client"]
             isOneToOne: false
             referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "suscriptions_renewed_from_fkey"
+            columns: ["renewed_from"]
+            isOneToOne: false
+            referencedRelation: "suscriptions"
             referencedColumns: ["id"]
           },
         ]

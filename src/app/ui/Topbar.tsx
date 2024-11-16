@@ -39,6 +39,12 @@ export default function TopBar() {
       view: "Ver Suscripcion",
       renewal: "Renovar Suscripcion",
     },
+    "/dashboard/leads": {
+      default: "Leads",
+      create: "Lead Nuevo",
+      edit: "Editar Lead",
+      view: "Ver Lead",
+    },
     "/dashboard/invoices": "Facturas",
     "/dashboard/bills": "Gastos",
     "/dashboard/status": "Status",
