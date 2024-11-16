@@ -60,7 +60,7 @@ export default function ViewSuscription({
                     <div className="mt-5 flex space-x-3">
                         <div className="w-full">
                             <label className="block mb-2 text-sm font-medium text-gray-900">Servicio</label>
-                            <select value={suscripcionData.service} disabled id="service" name="service" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <select value={suscripcionData.service} disabled id="service" name="service" className="select-basic">
                                 <option value="default" selected>Elige Un Servicio</option>
                                 <option value="HOST">Hosting</option>
                                 <option value="DOM">Dominio</option>
@@ -78,7 +78,7 @@ export default function ViewSuscription({
                                 type="text" 
                                 name="client"
                                 value={clientData.name} 
-                                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                className="input-basic peer" 
                                 placeholder=" "  
                             />
                             
@@ -89,7 +89,7 @@ export default function ViewSuscription({
                                 type="text" 
                                 name="contact"
                                 value={clientData.contacts[suscripcionData.contact]?.nombre || "N/A"} 
-                                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                className="input-basic peer" 
                                 placeholder=" "  
                             />
                         </div>
@@ -123,10 +123,10 @@ export default function ViewSuscription({
                                     type="date" 
                                     name="form_date" 
                                     defaultValue={suscripcionData.form_date? new Date(suscripcionData.form_date).toISOString().split('T')[0] : ""}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Desde</label>
+                                <label className="label-basic">Desde</label>
                             </div>
                         </div>
                     </div>
@@ -138,10 +138,10 @@ export default function ViewSuscription({
                                     name="each" 
                                     readOnly
                                     value={suscripcionData.each || ""}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Cada</label>
+                                <label className="label-basic">Cada</label>
                             </div>
                         </div>
                         <div className="w-1/3">
@@ -150,7 +150,7 @@ export default function ViewSuscription({
                                 name="each_type"
                                 disabled
                                 value={suscripcionData.each_type || ""} 
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                className="select-basic"
                             >
                                 <option value="default" selected>Elige Cada Cuanto Tiempo</option>
                                 <option value="days">Dias</option>
@@ -165,18 +165,18 @@ export default function ViewSuscription({
                                     type="date" 
                                     name="renovation_date" 
                                     defaultValue={suscripcionData.renewal_date? new Date(suscripcionData.renewal_date).toISOString().split('T')[0] : ""}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Fecha De Renovacion</label>
+                                <label className="label-basic">Fecha De Renovacion</label>
                             </div>
                         </div>
                     </div>
                     <div className="mt-5 flex items-center space-x-3">
                         <div className="w-full">
                             <div className="relative z-0 w-full group"> 
-                                <input value={suscripcionData.concept || ""} readOnly type="text" name="concept" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" placeholder=" "  />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Concepto</label>
+                                <input value={suscripcionData.concept || ""} readOnly type="text" name="concept" className="input-basic peer" placeholder=" "  />
+                                <label className="label-basic">Concepto</label>
                             </div>
                         </div>
                     </div>
@@ -191,15 +191,15 @@ export default function ViewSuscription({
                                     name="charge" 
                                     readOnly
                                     value={suscripcionData.amount || ""}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Cobro</label>
+                                <label className="label-basic">Cobro</label>
                                 
                             </div>
                         </div>
                         <div className="w-1/3">
-                            <select id="badge" disabled value={suscripcionData.badge || ""} name="badge" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <select id="badge" disabled value={suscripcionData.badge || ""} name="badge" className="select-basic">
                                 <option selected>Divisa</option>
                                 <option value="mxn">MXN</option>
                                 <option value="usd">USD</option>
@@ -213,10 +213,10 @@ export default function ViewSuscription({
                                     name="tax" 
                                     readOnly
                                     value={suscripcionData.tax || "0"}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Impuesto %</label>
+                                <label className="label-basic">Impuesto %</label>
                             </div>
                         </div>
                     </div>
@@ -228,10 +228,10 @@ export default function ViewSuscription({
                                     name="discount" 
                                     readOnly
                                     value={suscripcionData.discount || "0"}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Descuento</label>
+                                <label className="label-basic">Descuento</label>
                             </div>
                         </div>
                         <div className="w-1/3">
@@ -240,7 +240,7 @@ export default function ViewSuscription({
                                 name="discount_type"
                                 disabled
                                 value={suscripcionData.discount_type || "0"}
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                className="select-basic"
                             >
                                 <option selected>Tipo De Descuento</option>
                                 <option value="percentaje">Porcentaje %</option>
@@ -254,10 +254,10 @@ export default function ViewSuscription({
                                     type="text" 
                                     name="tax_calc" 
                                     value={suscripcionData.tax_calc || "0"}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Calculo de impuesto</label>
+                                <label className="label-basic">Calculo de impuesto</label>
                             </div>
                         </div>
                     </div>
@@ -269,10 +269,10 @@ export default function ViewSuscription({
                                     type="text" 
                                     name="subtotal" 
                                     value={suscripcionData.subtotal || "0"}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">SubTotal</label>
+                                <label className="label-basic">SubTotal</label>
                             </div>
                         </div>
                         <div className="w-1/2">
@@ -282,10 +282,10 @@ export default function ViewSuscription({
                                     type="text" 
                                     name="total" 
                                     value={suscripcionData.total || "0"}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Total</label>
+                                <label className="label-basic">Total</label>
                             </div>
                         </div>
                     </div>
@@ -302,10 +302,10 @@ export default function ViewSuscription({
                                             readOnly
                                             name="notes" 
                                             rows={5} 
-                                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                            className="input-basic peer" 
                                             placeholder=" "  
                                         />
-                                        <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nota</label>
+                                        <label className="label-basic">Nota</label>
                                     </div>
                                     
                                 </div>

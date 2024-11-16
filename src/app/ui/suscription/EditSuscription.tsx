@@ -179,7 +179,7 @@ export default function EditSuscriptionForm({
                     <div className="mt-5 flex space-x-3">
                         <div className="w-full">
                             <label className="block mb-2 text-sm font-medium text-gray-900">Selecciona un Servicio</label>
-                            <select defaultValue={suscripcionData.service} id="service" name="service" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <select defaultValue={suscripcionData.service} id="service" name="service" className="select-basic">
                                 <option value="default" selected>Elige Un Servicio</option>
                                 <option value="HOST">Hosting</option>
                                 <option value="DOM">Dominio</option>
@@ -203,7 +203,7 @@ export default function EditSuscriptionForm({
                             <select 
                                 id="client" 
                                 name="client"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                className="select-basic"
                                 value={selectedClient}
                                 onChange={(e) => setSelectedClient(e.target.value)}
                             >
@@ -225,7 +225,7 @@ export default function EditSuscriptionForm({
                             <select 
                                 id="contact"
                                 name="contact" 
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                className="select-basic"
                                 value={selectedContact}
                                 onChange={(e)=>{setselectedContact(Number(e.target.value))}}
                             >
@@ -277,10 +277,10 @@ export default function EditSuscriptionForm({
                                     name="form_date" 
                                     defaultValue={suscripcionData.form_date ? new Date(suscripcionData.form_date).toISOString().split('T')[0] : ""}
                                     onChange={(e) =>{setform_date(e.target.value)} }
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Desde</label>
+                                <label className="label-basic">Desde</label>
                             </div>
                         </div>
                     </div>
@@ -292,10 +292,10 @@ export default function EditSuscriptionForm({
                                     name="each" 
                                     defaultValue={suscripcionData.each || ""}
                                     onChange={(e) => {seteach(Number(e.target.value))}}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Cada</label>
+                                <label className="label-basic">Cada</label>
                             </div>
                         </div>
                         <div className="w-1/3">
@@ -304,7 +304,7 @@ export default function EditSuscriptionForm({
                                 name="each_type" 
                                 defaultValue={suscripcionData.each_type || ""}
                                 onChange={(e) => {seteach_type(e.target.value)}}
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                className="select-basic"
                             >
                                 <option value="default" selected>Elige Cada Cuanto Tiempo</option>
                                 <option value="days">Dias</option>
@@ -327,10 +327,10 @@ export default function EditSuscriptionForm({
                                     type="date" 
                                     name="renovation_date" 
                                     value={renovation_date}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Fecha De Renovacion</label>
+                                <label className="label-basic">Fecha De Renovacion</label>
                                 {state.errors?.renovation_date &&
                                     state.errors?.renovation_date.map((error: string) =>(
                                         <p key={error} className="text-red-600 text-xs">
@@ -344,8 +344,8 @@ export default function EditSuscriptionForm({
                     <div className="mt-5 flex items-center space-x-3">
                         <div className="w-full">
                             <div className="relative z-0 w-full group"> 
-                                <input type="text" defaultValue={suscripcionData.concept || ""} name="concept" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" placeholder=" "  />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Concepto</label>
+                                <input type="text" defaultValue={suscripcionData.concept || ""} name="concept" className="input-basic peer" placeholder=" "  />
+                                <label className="label-basic">Concepto</label>
                                 {state.errors?.concept &&
                                     state.errors?.concept.map((error: string) =>(
                                         <p key={error} className="text-red-600 text-xs">
@@ -367,10 +367,10 @@ export default function EditSuscriptionForm({
                                     name="charge" 
                                     defaultValue={suscripcionData.amount || ""}
                                     onChange={(e) => {setamount(Number(e.target.value))}}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Cobro</label>
+                                <label className="label-basic">Cobro</label>
                                 {state.errors?.charge &&
                                     state.errors?.charge.map((error: string) =>(
                                         <p key={error} className="text-red-600 text-xs">
@@ -381,7 +381,7 @@ export default function EditSuscriptionForm({
                             </div>
                         </div>
                         <div className="w-1/3">
-                            <select id="badge" defaultValue={suscripcionData.badge || ""} name="badge" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <select id="badge" defaultValue={suscripcionData.badge || ""} name="badge" className="select-basic">
                                 <option selected>Divisa</option>
                                 <option value="mxn">MXN</option>
                                 <option value="usd">USD</option>
@@ -401,10 +401,10 @@ export default function EditSuscriptionForm({
                                     name="tax" 
                                     defaultValue={suscripcionData.tax || 0}
                                     onChange={(e) => {settax(Number(e.target.value))}}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Impuesto %</label>
+                                <label className="label-basic">Impuesto %</label>
                             </div>
                         </div>
                     </div>
@@ -416,10 +416,10 @@ export default function EditSuscriptionForm({
                                     name="discount" 
                                     defaultValue={suscripcionData.discount || 0}
                                     onChange={(e) => {setdiscount(Number(e.target.value))}}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Descuento</label>
+                                <label className="label-basic">Descuento</label>
                             </div>
                         </div>
                         <div className="w-1/3">
@@ -428,7 +428,7 @@ export default function EditSuscriptionForm({
                                 name="discount_type"
                                 defaultValue={suscripcionData.discount_type || ""}
                                 onChange={(e) => {setdiscount_type(e.target.value)}}
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                className="select-basic"
                             >
                                 <option selected>Tipo De Descuento</option>
                                 <option value="percentaje">Porcentaje %</option>
@@ -449,10 +449,10 @@ export default function EditSuscriptionForm({
                                     type="number" 
                                     name="tax_calc" 
                                     value={Number(tax_calc)}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Calculo de impuesto</label>
+                                <label className="label-basic">Calculo de impuesto</label>
                             </div>
                         </div>
                     </div>
@@ -464,10 +464,10 @@ export default function EditSuscriptionForm({
                                     type="number" 
                                     name="subtotal" 
                                     value={Number(subtotal)}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">SubTotal</label>
+                                <label className="label-basic">SubTotal</label>
                                 {state.errors?.subtotal &&
                                     state.errors?.subtotal.map((error: string) =>(
                                         <p key={error} className="text-red-600 text-xs">
@@ -484,10 +484,10 @@ export default function EditSuscriptionForm({
                                     type="text" 
                                     name="total" 
                                     value={Number(total)}
-                                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                    className="input-basic peer" 
                                     placeholder=" "  
                                 />
-                                <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Total</label>
+                                <label className="label-basic">Total</label>
                                 {state.errors?.total &&
                                     state.errors?.total.map((error: string) =>(
                                         <p key={error} className="text-red-600 text-xs">
@@ -511,10 +511,10 @@ export default function EditSuscriptionForm({
                                             onChange={(e) => handleChangeNota(index, e.target.value)}
                                             name="notes" 
                                             rows={5} 
-                                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                            className="input-basic peer" 
                                             placeholder=" "  
                                         />
-                                        <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nota</label>
+                                        <label className="label-basic">Nota</label>
                                     </div>
                                     <div className="w-full">
                                         <button type="button" onClick={() => handleRemoveNote(index)} className="text-white bg-SecondaryBg hover:bg-PrimaryBg rounded-lg py-1 px-2 w-full">Eliminar</button>
@@ -525,7 +525,7 @@ export default function EditSuscriptionForm({
                         <div className="relative z-0 w-full group min-h-[20vh]">
                             <div 
                                 onClick={handleAddNotes}
-                                className="text-white bg-PrimaryBg hover:bg-SecondaryBg focus:ring-4 focus:outline-none focus:ring-PrimaryAct font-medium rounded-lg text-sm w-full h-full sm:w-auto px-5 py-2.5 text-center transition-all duration-500 cursor-pointer flex justify-center items-center">
+                                className="btn-add-notes">
                                     <p>Add Nota +</p>
                             </div>
                         </div>

@@ -137,8 +137,8 @@ export default function EditClientForm({
                 <div className="mt-5 flex space-x-3">
                     <div className="w-1/3">
                         <div className="relative z-0 w-full group">
-                            <input defaultValue={clientData.name} type="text" name="name" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" placeholder=" "  />
-                            <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nombre *</label>
+                            <input defaultValue={clientData.name} type="text" name="name" className="input-basic peer" placeholder=" "  />
+                            <label className="label-basic">Nombre *</label>
                             {state.errors?.name &&
                                 state.errors?.name.map((error: string) =>(
                                     <p key={error} className="text-red-600 text-xs">
@@ -150,8 +150,8 @@ export default function EditClientForm({
                     </div>
                     <div className="w-1/3">
                         <div className="relative z-0 w-full group">
-                            <input defaultValue={clientData.contact_email} type="text" name="contact_email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" placeholder=" " />
-                            <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Correo Electronico *</label>
+                            <input defaultValue={clientData.contact_email} type="text" name="contact_email" className="input-basic peer" placeholder=" " />
+                            <label className="label-basic">Correo Electronico *</label>
                             {state.errors?.contact_email &&
                                 state.errors?.contact_email.map((error: string) =>(
                                     <p key={error} className="text-red-600 text-xs">
@@ -163,8 +163,8 @@ export default function EditClientForm({
                     </div>
                     <div className="w-1/3">
                         <div className="relative z-0 w-full group">
-                            <input defaultValue={clientData.contact_phone || ""} type="text" name="contact_phone" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" placeholder=" " />
-                            <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Telefono</label>
+                            <input defaultValue={clientData.contact_phone || ""} type="text" name="contact_phone" className="input-basic peer" placeholder=" " />
+                            <label className="label-basic">Telefono</label>
                         </div>
                     </div>
                 </div>
@@ -172,14 +172,14 @@ export default function EditClientForm({
                 <div className="mt-5 flex space-x-3">
                     <div className="w-4/12">
                         <div className="relative z-0 w-full group">
-                            <input defaultValue={clientData.contact_address || ""} type="text" name="contact_address" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" placeholder=" "  />
-                            <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Dirreccion</label>
+                            <input defaultValue={clientData.contact_address || ""} type="text" name="contact_address" className="input-basic peer" placeholder=" "  />
+                            <label className="label-basic">Dirreccion</label>
                         </div>
                     </div>
                     <div className="w-3/12">
                         <div className="relative z-0 w-full group">
-                            <input defaultValue={clientData.contact_city || ""} type="text" name="contact_city" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" placeholder=" " />
-                            <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Ciudad *</label>
+                            <input defaultValue={clientData.contact_city || ""} type="text" name="contact_city" className="input-basic peer" placeholder=" " />
+                            <label className="label-basic">Ciudad *</label>
                             {state.errors?.contact_city &&
                                 state.errors?.contact_city.map((error: string) =>(
                                     <p key={error} className="text-red-600 text-xs">
@@ -191,14 +191,14 @@ export default function EditClientForm({
                     </div>
                     <div className="w-3/12">
                         <div className="relative z-0 w-full group">
-                            <input defaultValue={clientData.contact_state || ""} type="text" name="contact_state" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" placeholder=" " />
-                            <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Estado</label>
+                            <input defaultValue={clientData.contact_state || ""} type="text" name="contact_state" className="input-basic peer" placeholder=" " />
+                            <label className="label-basic">Estado</label>
                         </div>
                     </div>
                     <div className="w-2/12">
                         <div className="relative z-0 w-full group">
-                            <input defaultValue={clientData.contact_zip || ""} type="text" name="contact_zip" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" placeholder=" " />
-                            <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Codigo Postal</label>
+                            <input defaultValue={clientData.contact_zip || ""} type="text" name="contact_zip" className="input-basic peer" placeholder=" " />
+                            <label className="label-basic">Codigo Postal</label>
                         </div>
                     </div>
                 </div>
@@ -220,8 +220,8 @@ export default function EditClientForm({
                     </div>
                     <div className="w-1/3">
                         <div className="relative z-0 w-full mb-5 group">
-                            <input defaultValue={clientData.association_date ? new Date(clientData.association_date).toISOString().split('T')[0] : ""}  type="date" name="association_date" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" placeholder=" "  />
-                            <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Fecha De Asociacion</label>
+                            <input defaultValue={clientData.association_date ? new Date(clientData.association_date).toISOString().split('T')[0] : ""}  type="date" name="association_date" className="input-basic peer" placeholder=" "  />
+                            <label className="label-basic">Fecha De Asociacion</label>
                             {state.errors?.association_date &&
                                 state.errors?.association_date.map((error: string) =>(
                                     <p key={error} className="text-red-600 text-xs">
@@ -250,32 +250,32 @@ export default function EditClientForm({
                             <div key={index} className="flex space-x-3 mb-5">
                                 <div className="w-1/6">
                                     <div className="relative z-0 w-full group">
-                                        <input type="text" value={contact.nombre} onChange={(e) => handleChangeContact(index, 'nombre', e.target.value)} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" placeholder=" "  />
-                                        <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nombre *</label>
+                                        <input type="text" value={contact.nombre} onChange={(e) => handleChangeContact(index, 'nombre', e.target.value)} className="input-basic peer" placeholder=" "  />
+                                        <label className="label-basic">Nombre *</label>
                                     </div>
                                 </div>
                                 <div className="w-1/6">
                                     <div className="relative z-0 w-full group">
-                                        <input type="text" value={contact.email} onChange={(e) => handleChangeContact(index, 'email', e.target.value)} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" placeholder=" "  />
-                                        <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Correo Electronico *</label>
+                                        <input type="text" value={contact.email} onChange={(e) => handleChangeContact(index, 'email', e.target.value)} className="input-basic peer" placeholder=" "  />
+                                        <label className="label-basic">Correo Electronico *</label>
                                     </div>
                                 </div>
                                 <div className="w-1/6">
                                     <div className="relative z-0 w-full group">
-                                        <input type="text" value={contact.position} onChange={(e) => handleChangeContact(index, 'position', e.target.value)} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" placeholder=" "  />
-                                        <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Position *</label>
+                                        <input type="text" value={contact.position} onChange={(e) => handleChangeContact(index, 'position', e.target.value)} className="input-basic peer" placeholder=" "  />
+                                        <label className="label-basic">Position *</label>
                                     </div>
                                 </div>
                                 <div className="w-1/6">
                                     <div className="relative z-0 w-full group">
-                                        <input type="text" value={contact.celular} onChange={(e) => handleChangeContact(index, 'celular', e.target.value)} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" placeholder=" "  />
-                                        <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Celular</label>
+                                        <input type="text" value={contact.celular} onChange={(e) => handleChangeContact(index, 'celular', e.target.value)} className="input-basic peer" placeholder=" "  />
+                                        <label className="label-basic">Celular</label>
                                     </div>
                                 </div>
                                 <div className="w-1/6">
                                     <div className="relative z-0 w-full group">
-                                        <input type="text" value={contact.telefono} onChange={(e) => handleChangeContact(index, 'telefono', e.target.value)} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" placeholder=" "  />
-                                        <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Telefono</label>
+                                        <input type="text" value={contact.telefono} onChange={(e) => handleChangeContact(index, 'telefono', e.target.value)} className="input-basic peer" placeholder=" "  />
+                                        <label className="label-basic">Telefono</label>
                                     </div>
                                 </div>
                                 <div className="w-1/6 flex justify-center">
@@ -301,10 +301,10 @@ export default function EditClientForm({
                                         onChange={(e) => handleChangeNota(index, e.target.value)}
                                         name="notes" 
                                         rows={5} 
-                                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-PrimaryBg peer" 
+                                        className="input-basic peer" 
                                         placeholder=" "  
                                     />
-                                    <label className="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-PrimaryBg peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nota</label>
+                                    <label className="label-basic">Nota</label>
                                 </div>
                                 <div className="w-full">
                                     <button type="button" onClick={() => handleRemoveNote(index)} className="text-white bg-SecondaryBg hover:bg-PrimaryBg rounded-lg py-1 px-2 w-full">Eliminar</button>
@@ -315,7 +315,7 @@ export default function EditClientForm({
                     <div className="relative z-0 w-full group min-h-[20vh]">
                         <div 
                             onClick={handleAddNotes}
-                            className="text-white bg-PrimaryBg hover:bg-SecondaryBg focus:ring-4 focus:outline-none focus:ring-PrimaryAct font-medium rounded-lg text-sm w-full h-full sm:w-auto px-5 py-2.5 text-center transition-all duration-500 cursor-pointer flex justify-center items-center">
+                            className="btn-add-notes">
                                 <p>Add Nota +</p>
                         </div>
                     </div>
