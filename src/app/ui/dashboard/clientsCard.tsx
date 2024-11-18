@@ -20,7 +20,7 @@ export default async function ClientsCard() {
         </div>
       </div>
       <Suspense key={query + currentPage}>
-        <ClientsTable query={query} currentPage={currentPage} location="dashboard"/>
+        <ClientsTable query={query} currentPage={currentPage} status="" location="dashboard"/>
       </Suspense>
     </div>
   );
