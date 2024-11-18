@@ -1,6 +1,5 @@
 'use server'
 
-import { revalidatePath } from "next/cache";
 import { createClient } from "../utils/server";
 
 
@@ -25,14 +24,15 @@ const ITEMS_PER_PAGE = 10;
 export async function FetchClientsFiltered(
     query: string,
     currentPage: number,
-    location: string
+    location: string,
+    status?: string
 ) {
     const supabase = createClient();
     const LimitPerPage = location === "clients" ? ITEMS_PER_PAGE : 5;
     const offset = (currentPage - 1) * LimitPerPage;
-    const filters = query.split(' ').map(q => `name.ilike.%${q}%`).join(',');
+    const filters = query.split(' ').map(q => `name.ilike.%${q}%,contact_email.ilike.%${q}%,contact_city.ilike.%${q}%,contact_state.ilike.%${q}%`).join(',');
     try {
-        const clients = await supabase
+        let clients = supabase
             .from('clients')
             .select(`
             id,
@@ -49,35 +49,56 @@ export async function FetchClientsFiltered(
             .order('association_date', { ascending: false })
             .range(offset, offset + LimitPerPage - 1)
             .limit(LimitPerPage)
-        return clients.data
+
+        if (status) {
+            const enableValue = status === "ACTIVE"; // Convertir el filtro de texto a booleano
+            clients = clients.eq('enable', enableValue);
+        }
+
+        const { data, error } = await clients;
+
+        if (error) {
+            console.error("Database Error:", error);
+            throw new Error('Failed To Fetch Data');
+        }
+
+        return data
 
     } catch (error) {
         console.error("Database Error:", error)
         throw new Error('Failed To Fetch Data')
     }
-    revalidatePath("/dashboard/clients")
 }
 
 export async function CountClientsFiltered(
     query: string,
+    status?: string
 ) {
     const supabase = createClient();
-    const filters = query.split(' ').map(q => `name.ilike.%${q}%`).join(',');
+    const filters = query.split(' ').map(q => `name.ilike.%${q}%,contact_email.ilike.%${q}%,contact_city.ilike.%${q}%,contact_state.ilike.%${q}%`).join(',');
 
     try {
-        const { count, error } = await supabase
+        let clients = supabase
             .from('clients')
             .select('*', { count: 'exact', head: true })
             .or(filters)
             .not('visible', 'eq', false);
 
-        if (!count) {
+        // Aplicar filtro por estado si existe
+        if (status) {
+            const enableValue = status === "ACTIVE"; // Convertir el filtro de texto a booleano
+            clients = clients.eq('enable', enableValue);
+        }
+
+        const { count, error } = await clients;
+
+        if (error) {
             console.error("Database Error:", error);
             throw new Error('Failed To Fetch Data');
         }
-        const totalPages = Math.ceil(Number(count) / ITEMS_PER_PAGE)
-        console.log(count)
-        return Number(totalPages); // Retorna solo el número de registros que coinciden
+
+
+        return Math.ceil(Number(count || 0) / ITEMS_PER_PAGE); // Retorna solo el número de registros que coinciden
 
     } catch (error) {
         console.error("Database Error:", error);

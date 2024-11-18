@@ -3,14 +3,16 @@ import ClientTableItem from "./ClientsTableItem";
 
 export default async function ClientsTable({
     query,
+    status,
     currentPage,
     location
 }: {
     query:string,
+    status: string,
     currentPage:number,
     location:string
 }) {
-    const Clients = await FetchClientsFiltered(query, currentPage, location);
+    const Clients = await FetchClientsFiltered(query, currentPage, location, status);
     return(
         <table className="w-full text-sm text-left rtl:text-right text-gray-500">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
