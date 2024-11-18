@@ -20,17 +20,39 @@ export async function fetchClientsFormCreate() {
     }
 }
 
-export async function CountSuscriptionFiltered(query: string) {
+export async function CountSuscriptionFiltered(query: string, service?: string, expiration?: string) {
     const supabase = createClient();
-
+    const now = new Date();
     try {
-        const { count, error } = await supabase
+        let susciptions = supabase
             .from('suscriptions')
             .select('*, client!inner(name)', { count: 'exact', head: true })
-            .or(`service.ilike.%${query}%`)
-
             .order('renewal_date', { ascending: false })
 
+        if (query) {
+            susciptions = susciptions.ilike('client.name', `%${query}%`)
+        }
+
+        if (service) {
+            susciptions = susciptions.eq('service', service)
+        }
+
+        if (expiration) {
+            if (expiration === "UNDEFEATED") {
+                susciptions = susciptions.gt('renewal_date', new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString());
+            } else if (expiration === "TOEXPIRE") {
+                susciptions = susciptions.gte('renewal_date', now.toISOString())
+                    .lte('renewal_date', new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString())
+                    .is('renewed_from_date', null);
+            } else if (expiration === "EXPIRED") {
+                susciptions = susciptions.lt('renewal_date', now.toISOString())
+                    .is('renewed_from_date', null);
+            } else if (expiration === "RENEWAL") {
+                susciptions = susciptions.not('renewed_from_date', 'is', null); // Mostrar solo los que tienen renewed_from definido
+            }
+        }
+
+        const { count, error } = await susciptions
 
 
         if (!count) {
@@ -47,20 +69,53 @@ export async function CountSuscriptionFiltered(query: string) {
 
 export async function FetchSuscriptionsFiltered(
     query: string,
-    currentPage: number
+    currentPage: number,
+    service?: string,
+    expiration?: string
 ) {
     const supabase = createClient();
     const offset = (currentPage - 1) * ITEMS_PER_PAGE;
-
+    const now = new Date();
     try {
-        const susciptions = await supabase
+        let susciptions = supabase
             .from('suscriptions')
             .select('*, client!inner(name,client_logo,contacts)')
-            .or(`service.ilike.%${query}%`)
             .order('renewal_date', { ascending: false })
             .range(offset, offset + ITEMS_PER_PAGE - 1)
             .limit(ITEMS_PER_PAGE)
-        return susciptions.data;
+
+        if (query) {
+            susciptions = susciptions.ilike('client.name', `%${query}%`)
+        }
+
+        if (service) {
+            susciptions = susciptions.eq('service', service)
+        }
+
+        if (expiration) {
+            if (expiration === "UNDEFEATED") {
+                susciptions = susciptions.gt('renewal_date', new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString());
+            } else if (expiration === "TOEXPIRE") {
+                susciptions = susciptions.gte('renewal_date', now.toISOString())
+                    .lte('renewal_date', new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString())
+                    .is('renewed_from_date', null);
+            } else if (expiration === "EXPIRED") {
+                susciptions = susciptions.lt('renewal_date', now.toISOString())
+                    .is('renewed_from_date', null);
+            } else if (expiration === "RENEWAL") {
+                susciptions = susciptions.not('renewed_from_date', 'is', null); // Mostrar solo los que tienen renewed_from definido
+            }
+        }
+
+
+        const { data, error } = await susciptions;
+
+        if (error) {
+            console.error("Database Error:", error);
+            throw new Error('Failed To Fetch Data');
+        }
+
+        return data;
     } catch (error) {
         console.error("Database Error:", error)
         throw new Error('Failed To Fetch Data')

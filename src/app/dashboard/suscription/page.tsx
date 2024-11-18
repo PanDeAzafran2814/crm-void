@@ -8,6 +8,23 @@ import { Suspense } from "react";
 import { TableSkeleton } from "@/app/ui/skeletons";
 import Pagination from "@/app/ui/pagination";
 import SuscripcionTable from "@/app/ui/suscription/SuscriptionsTable";
+import SelectFilter from "@/app/ui/search-select";
+
+const SERVICE_OPTIONS = {
+  DOM: "Dominio",
+  HOST: "Hosting",
+  SSL: "SSL",
+  SUP: "Web, Tech Support",
+  Email: "Email",
+  CRM: "Diseño Grafico",
+};
+
+const EXPIRATION_OPTIONS = {
+  EXPIRED: "Vencido",
+  TOEXPIRE: "Por Vencer",
+  UNDEFEATED: "Aun no Vence",
+  RENEWAL : "Renovado"
+}
 
 export default async function Page({
   searchParams
@@ -15,13 +32,17 @@ export default async function Page({
   searchParams?:{
     query?:string;
     page?:string;
+    service?:string;
+    expiration?:string;
   }
 }) {
   
   const query = searchParams?.query || '';
+  const service = searchParams?.service || '';
+  const expiration = searchParams?.expiration || '';
   const currentPage = Number(searchParams?.page) || 1;
-  const totalPages = await CountSuscriptionFiltered(query)
-  
+  const totalPages = await CountSuscriptionFiltered(query, service, expiration)
+    console.log(service)
 
   return (
     <div className="relative p-6 space-y-8 overflow-y-auto h-full w-full shadow-md sm:rounded-lg">
@@ -33,12 +54,23 @@ export default async function Page({
           <p>Nueva Suscipcion</p>
         </div>
       </Link>
-      <div className="relative">
-        <SearchTable placeholder="Busqueda de Suscipciones"/>
+      <div className="flex space-x-3">
+        <div>
+          <p className="text-base font-semibold">Expiracion</p>
+          <SelectFilter options={EXPIRATION_OPTIONS} paramName="expiration" placeholder="Busqueda Por Vencimiento" />
+        </div>
+        <div>
+          <p className="text-base font-semibold">Servicio</p>
+          <SelectFilter options={SERVICE_OPTIONS} paramName="service" placeholder="Busqueda Por Servicio" />
+        </div>
+        <div>
+          <p className="text-base font-semibold">Cliente</p>
+          <SearchTable placeholder="Busqueda Por Cliente"/>
+        </div>
       </div>
     </div>
     <Suspense key={query + currentPage} fallback={<TableSkeleton/>}>
-      <SuscripcionTable query={query} currentPage={currentPage}/>
+      <SuscripcionTable query={query} service={service} expiration={expiration} currentPage={currentPage}/>
     </Suspense>
     <Pagination totalPages={totalPages}/>
   </div>

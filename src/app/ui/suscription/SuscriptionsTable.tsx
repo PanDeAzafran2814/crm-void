@@ -3,13 +3,17 @@ import SuscriptionTableItem from "./SuscriptionTableItem";
 
 export default async function SuscripcionTable({
     query,
-    currentPage
+    currentPage,
+    service,
+    expiration
 }: {
     query: string,
-    currentPage: number
+    currentPage: number,
+    service: string,
+    expiration: string
 }){
 
-    const Suscrptions = await FetchSuscriptionsFiltered(query, currentPage);
+    const Suscrptions = await FetchSuscriptionsFiltered(query, currentPage, service, expiration);
     return(
         <table className="w-full text-sm text-left rtl:text-right text-gray-500">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
