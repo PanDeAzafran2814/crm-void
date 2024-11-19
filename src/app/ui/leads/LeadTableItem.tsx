@@ -24,7 +24,7 @@ const NAMES_STATUS = {
     CLOSED: "Cerrado",
     UNANSWERED: "Sin Respuesta",
     WAITINGMEETING: "Esperando Agengar Reunion",
-    EMAILSEND: "Correo Enciado",
+    EMAILSEND: "Correo Enviado",
     WHATSAPPSEND: "Whatsapp Enviado",
     WAITINGANSERED: "Esperando Respuesta",
 };
