@@ -17,6 +17,7 @@ export default function LeadsFormEdit({ leadData }: { leadData: Tables<"leads">}
         (leadData.notes as { nota: string; fecha: string }[]) || [{ nota: '', fecha: new Date().toISOString() }]
       );
 
+    const [Status, SetStatus] = useState(leadData.status)
 
 
     const handleAddNotes = () => {
@@ -123,7 +124,13 @@ export default function LeadsFormEdit({ leadData }: { leadData: Tables<"leads">}
                     <div className="mt-5 flex space-x-3">
                         <div className="w-full">
                             <label className="block mb-2 text-sm font-medium text-gray-900">Status *</label>
-                            <select defaultValue={leadData.status || "default"} id="status" name="status" className="select-basic">
+                            <select 
+                                defaultValue={leadData.status || "default"} 
+                                onChange={(e)=>{SetStatus(e.target.value)}}
+                                id="status" 
+                                name="status" 
+                                className="select-basic"
+                            >
                                 <option value="default" selected>Elige Un Status</option>
                                 <option value="CONTACT">Contactar</option>
                                 <option value="CONTACTED">Contactado</option>
@@ -194,8 +201,26 @@ export default function LeadsFormEdit({ leadData }: { leadData: Tables<"leads">}
                             ))
                         }
                     </div>
-                    
                 </div>
+                {
+                    Status === "CLOSED"?
+                    <div className="mt-5 flex space-x-3">
+                        <div className="w-full">
+                            <div className="relative z-0 w-full group">
+                                <textarea 
+                                    name="reason_to_close" 
+                                    className="input-basic peer" 
+                                    defaultValue={leadData.reason_to_close || ""}
+                                    rows={5} 
+                                    required
+                                    placeholder=" "  
+                                ></textarea>
+                                <label className="label-basic">Motivo De Cierre</label>
+                            </div>
+                        </div>
+                    </div>
+                    :null
+                }
                 </div>
                 {/***/}
                 

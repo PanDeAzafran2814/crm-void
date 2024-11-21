@@ -33,7 +33,7 @@ const COLORS_STATUS = {
     CONTACT: "bg-green-600",
     CONTACTED: "bg-orange-500",
     CLOSED: "bg-red-700",
-    UNANSWERED: "bg-orange-500",
+    UNANSWERED: "bg-red-700",
     WAITINGMEETING: "bg-orange-500",
     EMAILSEND: "bg-orange-500",
     WHATSAPPSEND: "bg-orange-500",

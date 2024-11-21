@@ -126,6 +126,9 @@ export async function UpdateLead(id: string, prevState: State, formData: FormDat
         noteIndex++;
     }
 
+    const reason_to_close = formData.get('reason_to_close') || ""
+
+
     const supabase = createClient();
     const { contact_name, contact_email, contact_phone, contact_company, contact_position, status, first_contact_date, source } = validateFields.data
     await supabase.from("leads").update({
@@ -134,6 +137,7 @@ export async function UpdateLead(id: string, prevState: State, formData: FormDat
         contact_email: contact_email,
         contact_phone: contact_phone,
         contact_position: contact_position,
+        reason_to_close: reason_to_close,
         status: status,
         date_of_first_contact: new Date(first_contact_date),
         source: source,

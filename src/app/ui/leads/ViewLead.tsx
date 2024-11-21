@@ -128,6 +128,26 @@ export default function LeadsView({ leadData }: { leadData: Tables<"leads"> }){
                     </div>
                     
                 </div>
+                {
+                    leadData.status === "CLOSED"?
+                    <div className="mt-5 flex space-x-3">
+                        <div className="w-full">
+                            <div className="relative z-0 w-full group">
+                                <textarea 
+                                    readOnly
+                                    name="reason_to_close" 
+                                    className="input-basic peer" 
+                                    defaultValue={leadData.reason_to_close || ""}
+                                    rows={5} 
+                                    required
+                                    placeholder=" "  
+                                ></textarea>
+                                <label className="label-basic">Motivo De Cierre</label>
+                            </div>
+                        </div>
+                    </div>
+                    :null
+                }
                 </div>
                 {/***/}
                 
