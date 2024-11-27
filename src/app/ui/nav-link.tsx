@@ -7,6 +7,8 @@ import {
   ServerStackIcon,
   CircleStackIcon,
   WalletIcon,
+  RocketLaunchIcon,
+  FolderOpenIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -23,8 +25,8 @@ const links = [
     icon: DocumentDuplicateIcon,
   },
   { name: "Gastos", href: "/dashboard/bills", icon: WalletIcon },
-  { name: "Cotizacion", href: "/dashboard/cotizacion", icon: ServerStackIcon },
-  { name: "Leads", href: "/dashboard/leads", icon: ServerStackIcon },
+  { name: "Cotizacion", href: "/dashboard/cotizacion", icon: FolderOpenIcon },
+  { name: "Leads", href: "/dashboard/leads", icon: RocketLaunchIcon },
   {
     name: "Accesos",
     href: "/dashboard/credentials",
@@ -36,7 +38,6 @@ export default function NavLinks() {
   const pathname = usePathname();
   const subPath = pathname.startsWith("/dashboard") ? pathname.replace("/dashboard", "") : "";
 
-  console.log(subPath)
   return (
     <ul className="space-y-2">
       {links.map((link) => {
@@ -52,7 +53,7 @@ export default function NavLinks() {
           <li key={link.name}>
             <Link href={link.href}>
               <div
-                className={`flex items-center text-white space-x-3 max-2xl:p-3 p-4 rounded-full w-full transition-all duration-700 cursor-pointer ${
+                className={`flex items-center text-white space-x-3 max-2xl:p-2 p-4 rounded-full w-full transition-all duration-700 cursor-pointer ${
                   isActive
                     ? "bg-PrimaryAct hover:bg-white hover:text-black"
                     : "hover:bg-PrimaryAct"

@@ -1,19 +1,19 @@
-import { FetchSuscriptionsFiltered } from "@/app/lib/suscriptions/data";
-import SuscriptionTableItem from "./SuscriptionTableItem";
+import { FetchServiceFiltered } from "@/app/lib/services/data";
+import ServiceTableItem from "./ServiceTableItem";
 
-export default async function SuscripcionTable({
+export default async function ServicesTable({
     query,
     currentPage,
     service,
-    expiration
+    status
 }: {
     query: string,
     currentPage: number,
     service: string,
-    expiration: string
+    status: string
 }){
 
-    const Suscrptions = await FetchSuscriptionsFiltered(query, currentPage, service, expiration);
+    const Services = await FetchServiceFiltered(query, currentPage, service, status);
     return(
         <table className="w-full text-sm text-left rtl:text-right text-gray-500">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
@@ -24,7 +24,7 @@ export default async function SuscripcionTable({
             <th scope="col">
               Informacion De Cliente
             </th>
-            <th>Servicio</th>
+            <th scope="col">Servicio</th>
             <th>
               Costo
             </th>
@@ -32,14 +32,15 @@ export default async function SuscripcionTable({
               Divisa
             </th>
             <th>
-              Fecha de Suscripcion
+              Fecha De Inicio
             </th>
             <th>
-                Fecha de Renovacion
+                Fecha de Entrega
             </th>
             <th>
-              Vence / o
+              Status
             </th>
+            <th>Tareas</th>
             <th scope="col" className="px-6 py-3">
               Acciones
             </th>
@@ -47,22 +48,22 @@ export default async function SuscripcionTable({
         </thead>
         <tbody>
           {
-            Suscrptions?.map((item, key) =>{
+            Services?.map((item, key) =>{
                 return(
-                    <SuscriptionTableItem
+                    <ServiceTableItem
                         key={key}
                         id={item.id}
-                        numlist={item.suscription_id}
-                        renewed_from={item.renewed_from}
-                        renewed_from_date={item.renewed_from_date}
+                        numlist={item.service_id}
                         client={item.client.name}
                         client_logo={item.client.client_logo}
                         contact={item.client.contacts[item.contact]}
                         service={item.service}
                         badge={item.badge}
                         amount={item.total}
-                        formDate={item.form_date}
-                        renewalDate={item.renewal_date}
+                        start_date={item.start_date}
+                        finish_date={item.finish_date}
+                        Status={item.status}
+                        tasks={item.tasks}
                     />
                 )
             })

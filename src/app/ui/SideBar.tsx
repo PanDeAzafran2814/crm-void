@@ -12,7 +12,7 @@ export default function SideBar() {
       <div className="py-4 max-2xl:px-3 px-8 h-[70%]">
         <NavLinks />
       </div>
-      <div className="h-[20%] max-2xl:px-3 px-6">
+      <div className="max-lg:h-[20%] h-[10%] max-2xl:px-3 px-6">
         <div className="max-2xl:space-y-2 space-y-4 bg-SecondaryBg p-2 rounded-lg max-2xl:py-2 py-4">
           <div className="flex justify-center items-center">
             <PlusCircleIcon className="text-white w-10 h-10 border-black bg-PrimaryBg hover:bg-white hover:text-black p-2 rounded-full transition-all duration-700 cursor-pointer" />

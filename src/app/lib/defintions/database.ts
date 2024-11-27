@@ -79,6 +79,7 @@ export type Database = {
           id: string
           last_action: string | null
           last_update: string | null
+          lead_id: number | null
           notes: Json | null
           reason_to_close: string | null
           source: string | null
@@ -96,6 +97,7 @@ export type Database = {
           id?: string
           last_action?: string | null
           last_update?: string | null
+          lead_id?: number | null
           notes?: Json | null
           reason_to_close?: string | null
           source?: string | null
@@ -113,12 +115,93 @@ export type Database = {
           id?: string
           last_action?: string | null
           last_update?: string | null
+          lead_id?: number | null
           notes?: Json | null
           reason_to_close?: string | null
           source?: string | null
           status?: string | null
         }
         Relationships: []
+      }
+      services: {
+        Row: {
+          amount: number | null
+          badge: string | null
+          client: string
+          concept: string | null
+          contact: number
+          created_at: string
+          discount: number | null
+          discount_type: string | null
+          finish_date: string
+          id: string
+          last_update: string | null
+          notes: Json | null
+          service: string
+          service_id: number | null
+          start_date: string
+          status: string
+          subtotal: number | null
+          tasks: Json | null
+          tax: number | null
+          tax_calc: number | null
+          total: number | null
+        }
+        Insert: {
+          amount?: number | null
+          badge?: string | null
+          client: string
+          concept?: string | null
+          contact: number
+          created_at?: string
+          discount?: number | null
+          discount_type?: string | null
+          finish_date: string
+          id?: string
+          last_update?: string | null
+          notes?: Json | null
+          service: string
+          service_id?: number | null
+          start_date: string
+          status: string
+          subtotal?: number | null
+          tasks?: Json | null
+          tax?: number | null
+          tax_calc?: number | null
+          total?: number | null
+        }
+        Update: {
+          amount?: number | null
+          badge?: string | null
+          client?: string
+          concept?: string | null
+          contact?: number
+          created_at?: string
+          discount?: number | null
+          discount_type?: string | null
+          finish_date?: string
+          id?: string
+          last_update?: string | null
+          notes?: Json | null
+          service?: string
+          service_id?: number | null
+          start_date?: string
+          status?: string
+          subtotal?: number | null
+          tasks?: Json | null
+          tax?: number | null
+          tax_calc?: number | null
+          total?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "services_client_fkey"
+            columns: ["client"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       suscriptions: {
         Row: {
@@ -142,6 +225,7 @@ export type Database = {
           renewed_from_date: string | null
           service: string
           subtotal: number | null
+          suscription_id: number | null
           tax: number | null
           tax_calc: number | null
           total: number | null
@@ -167,6 +251,7 @@ export type Database = {
           renewed_from_date?: string | null
           service: string
           subtotal?: number | null
+          suscription_id?: number | null
           tax?: number | null
           tax_calc?: number | null
           total?: number | null
@@ -192,6 +277,7 @@ export type Database = {
           renewed_from_date?: string | null
           service?: string
           subtotal?: number | null
+          suscription_id?: number | null
           tax?: number | null
           tax_calc?: number | null
           total?: number | null

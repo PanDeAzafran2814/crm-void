@@ -109,7 +109,7 @@ export default function SuscriptionTableItem({
     return(
         <tr className="bg-white border-bhover:bg-gray-50">
             <td className="w-4 p-4 text-center">
-                {numlist}
+                #{numlist}
             </td>
             <td className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap">
                 <img

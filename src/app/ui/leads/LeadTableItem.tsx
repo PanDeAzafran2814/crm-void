@@ -106,7 +106,7 @@ export default function LeadsTableItem({
     return (
         <tr className="bg-white border-bhover:bg-gray-50 border-b border-1 border-black">
             <td className="w-4 p-4 text-center">
-                {numlist}
+                #{numlist}
             </td>
             <td>
                 <div>

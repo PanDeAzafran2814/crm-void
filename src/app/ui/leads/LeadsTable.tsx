@@ -19,7 +19,7 @@ export default async function LeadsTable({
         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
             <th scope="col" className="px-6 py-3">
-              N°
+              #ID
             </th>
             <th scope="col">
               Informacion De Cliente
@@ -46,7 +46,7 @@ export default async function LeadsTable({
                     <LeadsTableItem
                         key={key}
                         id={item.id}
-                        numlist={key}
+                        numlist={item.lead_id}
                         contac_name={item.contact_name}
                         contact_email={item.contact_email}
                         contact_phone={item.contact_phone}

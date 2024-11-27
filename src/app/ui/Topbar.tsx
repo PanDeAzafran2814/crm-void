@@ -28,9 +28,10 @@ export default function TopBar() {
     },
     "/dashboard/services": {
       default: "Servicios",
-      create: "Servicio Nueva",
+      create: "Servicio Nuevo",
       edit: "Editar Servicio",
       view: "Ver Servicio",
+      reuse: "Re Usar Servicio",
     },
     "/dashboard/suscription": {
       default: "Suscripciones",
